@@ -1,177 +1,285 @@
-<html lang="en-US">
+<html lang="ar" dir="rtl">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>baby</title>
-    <link rel="stylesheet" href="/baby/assets/css/style.css?v=0cdd57d75208088ee0c01c089280f5d660b5a94f">
-
-    <!-- Font Awesome لأيقونات التواصل -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <style>
       body {
-        font-family: 'Cairo', Arial, sans-serif;
-        background: #f3faff;
+        font-family: "Cairo", sans-serif;
+        background: linear-gradient(135deg, #ff4d88, #ffcce0);
         margin: 0;
         padding: 0;
-        color: #023047;
+        color: #333;
       }
-      header {
-        background: linear-gradient(90deg, #8ecae6, #219ebc);
-        color: #fff;
-        text-align: center;
-        padding: 25px 15px;
-        border-bottom: 4px solid #ffb703;
-        position: relative;
-      }
-      h1 { margin: 0; font-size: 2em; }
 
-      /* أيقونات التواصل */
-      .social-icons {
-        position: absolute;
-        top: 20px;
-        right: 20px;
+      /* شريط التنقل */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.9);
         display: flex;
-        gap: 15px;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 25px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        backdrop-filter: blur(8px);
       }
-      .social-icons a {
-        color: #fff;
+      nav .logo {
         font-size: 1.5em;
+        font-weight: bold;
+        color: #ff4d88;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+      }
+      nav ul li a {
+        text-decoration: none;
+        color: #444;
+        font-weight: 600;
         transition: 0.3s;
       }
-      .social-icons a:hover {
-        color: #ffb703;
-        transform: scale(1.1);
+      nav ul li a:hover {
+        color: #ff4d88;
+      }
+      .search-bar input {
+        padding: 6px 12px;
+        border-radius: 20px;
+        border: 1px solid #ccc;
+        outline: none;
+        width: 160px;
+        transition: 0.3s;
+      }
+      .search-bar input:focus {
+        width: 200px;
+        border-color: #ff4d88;
       }
 
-      @media (max-width: 600px) {
-        .social-icons {
-          position: static;
-          justify-content: center;
-          margin-top: 10px;
-        }
+      main {
+        padding: 120px 20px 40px;
+        max-width: 1000px;
+        margin: auto;
       }
 
-      section {
-        max-width: 950px;
-        margin: 30px auto;
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-        padding: 25px;
+      h2 {
+        text-align: center;
+        color: #ff4d88;
       }
-      h2 { color: #219ebc; margin-bottom: 10px; }
 
       .products {
         display: flex;
         flex-wrap: wrap;
-        gap: 18px;
         justify-content: center;
+        gap: 20px;
       }
       .product {
-        background: #f7fbfc;
-        border-radius: 10px;
-        box-shadow: 0 1px 6px rgba(0,0,0,0.1);
-        width: 210px;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        width: 220px;
         text-align: center;
         padding: 15px;
         transition: 0.3s;
+        animation: fadeInUp 0.5s ease;
       }
-      .product:hover { transform: translateY(-4px); }
+      .product:hover {
+        transform: translateY(-5px);
+      }
       .product img {
         width: 100%;
-        height: 130px;
+        height: 140px;
         object-fit: cover;
-        border-radius: 8px;
+        border-radius: 10px;
       }
-      .product-name { margin-top: 8px; font-size: 1.1em; font-weight: bold; }
-      .product-price { color: #43aa8b; font-weight: bold; }
-
-      #adminBtn {
-        background: #ffb703;
-        color: #023047;
+      .product-name {
+        font-weight: bold;
+        margin-top: 8px;
+      }
+      .product-price {
+        color: #43aa8b;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+      .edit-btn,
+      .delete-btn {
         border: none;
-        padding: 8px 18px;
-        border-radius: 8px;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        color: white;
         cursor: pointer;
-        font-weight: 600;
+        transition: 0.3s;
+        margin: 3px;
       }
-      #adminBtn:hover { background: #fb8500; color: #fff; }
+      .edit-btn {
+        background: #ff66a3;
+      }
+      .edit-btn:hover {
+        background: #ff3385;
+        transform: scale(1.1);
+      }
+      .delete-btn {
+        background: #e63946;
+      }
+      .delete-btn:hover {
+        transform: scale(1.1);
+      }
 
+      /* لوحة الإدارة */
       #adminPanel {
         display: none;
-        background: #f1faee;
-        border: 2px solid #a7c957;
-        border-radius: 12px;
+        background: #fff;
         padding: 20px;
-        margin: 25px auto;
-        max-width: 700px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 30px;
       }
       #adminPanel input {
         margin: 5px;
         padding: 8px;
-        border: 1px solid #bbb;
+        border: 1px solid #ccc;
         border-radius: 6px;
-        width: calc(33% - 12px);
       }
       #adminPanel button {
-        background: #219ebc;
+        background: #ff4d88;
         color: white;
         border: none;
-        padding: 8px 14px;
+        padding: 8px 16px;
         border-radius: 6px;
         cursor: pointer;
         font-weight: 600;
+        transition: 0.3s;
+      }
+      #adminPanel button:hover {
+        background: #ff3385;
       }
 
-      .admin-actions button {
-        background: #219ebc;
-        border: none;
+      /* المودال */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+      }
+      .modal-content {
+        background: #fff;
+        padding: 25px;
+        border-radius: 12px;
+        width: 320px;
+        text-align: center;
+        animation: fadeInUp 0.4s ease;
+      }
+      .modal-content input {
+        width: 90%;
+        margin: 6px 0;
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+      }
+      .modal-content button {
+        margin-top: 10px;
+        background: #ff4d88;
         color: white;
-        margin: 4px;
-        border-radius: 6px;
-        padding: 5px 8px;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 8px;
         cursor: pointer;
       }
-      .admin-actions button.delete { background: #e63946; }
+      .modal-content button:hover {
+        background: #ff3385;
+      }
+
+      footer {
+        text-align: center;
+        padding: 15px;
+        background: #fff;
+        color: #555;
+        font-weight: bold;
+        border-top: 2px solid #ffb6c1;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     </style>
   </head>
 
   <body>
-    <header>
-      <div class="social-icons">
-        <a href="https://wa.me/9647829215612" target="_blank" title="واتساب"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.instagram.com/baby.careiq?igsh=ZGphNjdidXE2ZXVq" target="_blank" title="إنستغرام"><i class="fab fa-instagram"></i></a>
+    <nav>
+      <div class="logo">عناية الطفل</div>
+      <ul>
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="#" onclick="filterProducts('food')">الأغذية</a></li>
+        <li><a href="#" onclick="filterProducts('care')">العناية</a></li>
+        <li><a href="#" onclick="filterProducts('other')">أخرى</a></li>
+        <li><a href="#" onclick="openAdminPanel()">⚙️ لوحة الإدارة</a></li>
+      </ul>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="ابحث عن منتج..." onkeyup="searchProducts()" />
       </div>
+    </nav>
 
-      <h1>عناية الطفل</h1>
-      <p>منتجات ونصائح لرعاية طفلك بأفضل شكل ❤️</p>
-      <button id="adminBtn" onclick="openAdminPanel()">لوحة الإدارة</button>
-    </header>
-
-    <section id="products">
-      <h2>منتجات أطفال</h2>
+    <main>
       <div class="products" id="productsContainer"></div>
-    </section>
 
-    <div id="adminPanel">
-      <h3>لوحة تحكم المدير</h3>
-      <input id="productName" placeholder="اسم المنتج" />
-      <input id="productPrice" type="number" placeholder="السعر بالدينار" />
-      <input id="productImage" placeholder="رابط الصورة (URL)" />
-      <button onclick="addProduct()">➕ إضافة المنتج</button>
+      <div id="adminPanel">
+        <h3>لوحة تحكم المدير</h3>
+        <input id="productName" placeholder="اسم المنتج" />
+        <input id="productPrice" type="number" placeholder="السعر بالدينار" />
+        <input id="productImage" placeholder="رابط الصورة" />
+        <input id="productCategory" placeholder="فئة المنتج (food/care/other)" />
+        <button onclick="addProduct()">➕ إضافة المنتج</button>
+      </div>
+    </main>
+
+    <div class="modal" id="editModal">
+      <div class="modal-content">
+        <h3>تعديل المنتج</h3>
+        <input id="editName" placeholder="اسم المنتج" />
+        <input id="editPrice" placeholder="السعر" />
+        <input id="editImage" placeholder="رابط الصورة" />
+        <input id="editCategory" placeholder="الفئة" />
+        <button onclick="saveEdit()">💾 حفظ</button>
+      </div>
     </div>
 
-    <footer style="background:#8ecae6;text-align:center;padding:15px;margin-top:40px;color:#023047;font-weight:bold;">
-      © 2025 عناية الطفل
-    </footer>
+    <footer>© 2025 عناية الطفل</footer>
 
     <!-- Firebase -->
     <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-      import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+      import {
+        initializeApp
+      } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        getDocs,
+        deleteDoc,
+        doc,
+        updateDoc,
+      } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
       const firebaseConfig = {
         apiKey: "AIzaSyAWwb775H_z2ZASvPzpaLMIbVQIFhT_I48",
@@ -179,31 +287,46 @@
         projectId: "baby-a0fa1",
         storageBucket: "baby-a0fa1.firebasestorage.app",
         messagingSenderId: "80891249885",
-        appId: "1:80891249885:web:5bfa8038a9951ce2138734"
+        appId: "1:80891249885:web:5bfa8038a9951ce2138734",
       };
 
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
 
       let isAdmin = false;
+      let allProducts = [];
+      let currentEditId = null;
 
       async function loadProducts() {
         const container = document.getElementById("productsContainer");
         container.innerHTML = "";
         const querySnapshot = await getDocs(collection(db, "products"));
-        querySnapshot.forEach(docSnap => {
-          const p = docSnap.data();
+        allProducts = [];
+        querySnapshot.forEach((docSnap) => {
+          const p = { id: docSnap.id, ...docSnap.data() };
+          allProducts.push(p);
+        });
+        displayProducts(allProducts);
+      }
+
+      function displayProducts(products) {
+        const container = document.getElementById("productsContainer");
+        container.innerHTML = "";
+        products.forEach((p) => {
           const div = document.createElement("div");
           div.className = "product";
           div.innerHTML = `
             <img src="${p.image}" alt="${p.name}">
             <div class="product-name">${p.name}</div>
             <div class="product-price">${p.price} د.ع</div>
-            ${isAdmin ? `
-            <div class="admin-actions">
-              <button onclick="editProduct('${docSnap.id}', '${p.name}', '${p.price}', '${p.image}')">✏️ تعديل</button>
-              <button class="delete" onclick="deleteProduct('${docSnap.id}')">🗑️ حذف</button>
-            </div>` : ""}
+            ${
+              isAdmin
+                ? `<div>
+                    <button class='edit-btn' onclick="openEditModal('${p.id}')"><i class='fa fa-pen'></i></button>
+                    <button class='delete-btn' onclick="deleteProduct('${p.id}')"><i class='fa fa-trash'></i></button>
+                  </div>`
+                : ""
+            }
           `;
           container.appendChild(div);
         });
@@ -213,13 +336,20 @@
         const name = document.getElementById("productName").value.trim();
         const price = document.getElementById("productPrice").value.trim();
         const image = document.getElementById("productImage").value.trim();
-        if (!name || !price || !image) return alert("يرجى إدخال جميع الحقول");
+        const category = document
+          .getElementById("productCategory")
+          .value.trim()
+          .toLowerCase();
+        if (!name || !price || !image || !category)
+          return alert("يرجى إدخال جميع الحقول");
 
-        await addDoc(collection(db, "products"), { name, price, image });
+        await addDoc(collection(db, "products"), {
+          name,
+          price,
+          image,
+          category,
+        });
         alert("✅ تمت إضافة المنتج");
-        document.getElementById("productName").value = "";
-        document.getElementById("productPrice").value = "";
-        document.getElementById("productImage").value = "";
         loadProducts();
       }
 
@@ -230,16 +360,46 @@
         }
       }
 
-      async function editProduct(id, oldName, oldPrice, oldImage) {
-        const newName = prompt("اسم المنتج:", oldName);
-        const newPrice = prompt("السعر:", oldPrice);
-        const newImage = prompt("رابط الصورة:", oldImage);
-        if (newName && newPrice && newImage) {
-          await updateDoc(doc(db, "products", id), { name: newName, price: newPrice, image: newImage });
-          alert("تم تحديث المنتج ✅");
-          loadProducts();
-        }
-      }
+      // فتح نافذة التعديل
+      window.openEditModal = (id) => {
+        const p = allProducts.find((x) => x.id === id);
+        if (!p) return;
+        currentEditId = id;
+        document.getElementById("editName").value = p.name;
+        document.getElementById("editPrice").value = p.price;
+        document.getElementById("editImage").value = p.image;
+        document.getElementById("editCategory").value = p.category || "";
+        document.getElementById("editModal").style.display = "flex";
+      };
+
+      // حفظ التعديلات
+      window.saveEdit = async () => {
+        const newName = document.getElementById("editName").value.trim();
+        const newPrice = document.getElementById("editPrice").value.trim();
+        const newImage = document.getElementById("editImage").value.trim();
+        const newCategory = document
+          .getElementById("editCategory")
+          .value.trim()
+          .toLowerCase();
+
+        if (!newName || !newPrice || !newImage || !newCategory)
+          return alert("يرجى إدخال جميع الحقول");
+
+        await updateDoc(doc(db, "products", currentEditId), {
+          name: newName,
+          price: newPrice,
+          image: newImage,
+          category: newCategory,
+        });
+        document.getElementById("editModal").style.display = "none";
+        alert("✅ تم تحديث المنتج");
+        loadProducts();
+      };
+
+      // إغلاق المودال عند الضغط بالخارج
+      document.getElementById("editModal").addEventListener("click", (e) => {
+        if (e.target.id === "editModal") e.target.style.display = "none";
+      });
 
       function openAdminPanel() {
         const pass = prompt("أدخل كلمة المرور:");
@@ -250,12 +410,28 @@
         } else alert("❌ كلمة المرور غير صحيحة");
       }
 
-      window.openAdminPanel = openAdminPanel;
-      window.addProduct = addProduct;
-      window.editProduct = editProduct;
-      window.deleteProduct = deleteProduct;
+      function filterProducts(category) {
+        const filtered = allProducts.filter((p) => p.category === category);
+        displayProducts(filtered);
+      }
+
+      function searchProducts() {
+        const term = document
+          .getElementById("searchInput")
+          .value.toLowerCase()
+          .trim();
+        const filtered = allProducts.filter((p) =>
+          p.name.toLowerCase().includes(term)
+        );
+        displayProducts(filtered);
+      }
 
       loadProducts();
+      window.deleteProduct = deleteProduct;
+      window.addProduct = addProduct;
+      window.openAdminPanel = openAdminPanel;
+      window.filterProducts = filterProducts;
+      window.searchProducts = searchProducts;
     </script>
   </body>
 </html>
